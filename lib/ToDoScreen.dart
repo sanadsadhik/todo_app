@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:todo_app/model/ToDoModel.dart';
+import 'package:todo_app/SingleToDoScreen.dart';
 
 class ToDoScreen extends StatelessWidget {
   ToDoModel model;
@@ -71,12 +72,18 @@ class ToDoScreen extends StatelessWidget {
 
   buildTodotext(ToDo todo) {
     return Flexible(
-      fit: FlexFit.tight,
-      flex: 1,
-      child: Text(
-        todo.title,
-      ),
-    );
+        fit: FlexFit.tight,
+        flex: 1,
+        child: ListTile(
+            title: Text(todo.title, style: TextStyle(fontSize: 18)),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SingleToDoScreen(todo: todo),
+                ),
+              );
+            }));
   }
 }
 
